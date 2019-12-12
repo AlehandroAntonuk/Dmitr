@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>СМАЙТ</title>
+  </head>
+  <body>
+        <div class="header" class="collapse navbar-collapse" id="navbarSupportedContent">
+            <a href="main.html"><img src="images/smite-logo.png"></a>        
+            <a href="about.html" type="button" class="btn btn_navbar">About</a>
+            <a href="contact.html" type="button" class="btn btn_navbar">Contact</a>
+        </div>
+    <div id="app" class="content_about">
+        <div class="indent_about"></div>
+        <div class="content_about_text">
+            <p><font>
+                SMITE — многопользовательская игра в жанре MOBA с видом от третьего лица, разработанная компанией Hi-Rez Studios для операционной системы Windows.
+                <br>
+                В игре представленно 5 режимов игры: Арена, Поединок, Завоевание, Штурм, Осада. Так же в игре представленно 5 классов: Воин, Защитник, Маг, Охотник, Убийца.
+                <br>
+                Каждый игрок управляет героем-богом с тремя базовыми способностями, одной особой (ультимативной), одной пассивной. Также каждый бог может на свой выбор приобрести до шести пассивных предметов, дающих усиление, и до двух активных предметов, которые имеют полезные свойства (телепортация, исцеление и т. д.), имеют большое время восстановления, но не требуют маны в отличие от основных способностей.
+                <br>
+                В настоящее время игрокам на выбор предоставляется 92 бога/героя из десяти пантеонов: греческий, римский, китайский, японский, индуистский, кельтский, скандинавский, славянский, майя и египетский.
+                <br>    
+                Для более подробной информации тыкайте <a href="https://ru.wikipedia.org/wiki/Smite">Сюда</a>
+            </font></p>
+            <table class="slider_table">
+                    <tr>
+                        <td>
+                            <button type="button" class="btn btn-link" @click="prev">
+                                <ion-icon name="arrow-back"></ion-icon>
+                            </button>
+                        </td>
+                        <td>
+                            <transition name="switch"  mode="out-in">
+                                <component :key="curr" is="slider" :img-src="photos[curr]"></component>
+                            </transition>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-link" @click="next">
+                                <ion-icon name="arrow-forward"></ion-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+        </div>
+    </div>
+    <img class="end" src="images/smite-1.png">
+    
+    
+
+    <template id="slider">
+        <div class="slider">
+            <img :src="imgSrc">
+        </div>
+    </template>
+
+
+
+   
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/ionicons@4.4.8/dist/ionicons.js"></script>
+
+
+    <script>
+        Vue.component('slider',{
+        template: '#slider',
+        props:{
+            imgSrc: String
+        }
+
+    })
+
+    new Vue({
+        el: "#app",
+        data:{
+            photos:[
+                'images/pan.png',
+               'images/image1.png',
+               'images/imag2.png', 
+                'images/image3.png'
+            ],
+            curr: 0
+        },
+        methods:{
+            next: function(){
+                this.curr++;
+                if(this.curr >= this.photos.length) this.curr = 0;
+                console.log(this.curr);
+
+            },
+            prev: function(){
+                this.curr--;
+                if(this.curr < 0) this.curr = this.photos.length-1;
+                console.log(this.curr);
+            }
+        }
+    })
+    </script>
+  </body>
+</html>
